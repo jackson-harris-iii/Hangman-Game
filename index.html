@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+    <!-- <script src="assets/javascript/game.js"></script> -->
+</head>
+<body>
+    <div class="container">       
+        <h1>HANGMAN-GAME</h1>
+        <h2>Press any Key to Get Started</h2>
+        <div id="hiddenWord">
+            
+        </div>
+        <h3>Wins:</h3><span id="numberOfWins">0</span>
+    </div>
+<script>
+        var Hangman = {
+                heroes: ["Jaina", "Rexxar", "Thrall"],
+                wins: 0,
+                guesses: 7,
+                hiddenWord: " ",
+
+                getHero: function () {
+                    min = Math.ceil(0);
+                    max = Math.floor(3);
+                    index = Math.floor(Math.random() * (max - min)) + min;
+                    return this.heroes[index]
+                }
+            };
+
+                document.onkeyup = function (event) {
+                    //gets a random hero name
+                    var hero = Hangman.getHero();
+                    //creates an array with each letter of the hero name as an index
+                    var heroLetters = hero.split("");
+                    //test
+                    console.log(heroLetters);
+                    
+                    var hiddenWord = document.getElementById("hiddenWord");
+                    // creates a new div for each of the letters in the heroes name
+                    heroLetters.forEach(function(element) {
+                        var hiddenLetter = document.createElement("div", { is: });
+                        hiddenLetter.innerHTML = element + " ";
+                        hiddenWord.appendChild(hiddenLetter);
+
+                    });
+                    console.log(hero)
+
+                }
+</script>
+
+</body>
+</html>
