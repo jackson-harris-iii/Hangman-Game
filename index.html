@@ -37,10 +37,11 @@
         <h3>Wins:</h3><span id="numberOfWins">0</span>
     </div>
 <script>
-                var heroes = ["Jaina", "Rexxar", "Thrall"];
+                var heroes = ["JAINA", "REXXAR", "THRALL"];
                 var wins = 0;
                 var guesses = 0;
                 var hiddenWord = " ";
+                var currentWord = [];
 
                 function getHero() {
                     min = Math.ceil(0);
@@ -51,29 +52,73 @@
 
                 document.onkeyup = function (event) {
 
-                        if (guesses == 0){
-                            guesses = 7;
-                            document.getElementById("guessesRemaining").innerHTML = guesses; 
-                            //gets a random hero name
-                            var hero = getHero();
+                    if (guesses == 0){
+                        guesses = 7;
+                        document.getElementById("guessesRemaining").innerHTML = guesses; 
+                        //gets a random hero name
+                        var hero = getHero();
 
-                            //creates an array with each letter of the hero name as an index
-                            var heroLetters = hero.split("");
-                            //test
-                            console.log(heroLetters);
-                            
-                            var hiddenWord = document.getElementById("hiddenWord");
-                            // creates a new div for each of the letters in the heroes
-                            heroLetters.forEach(function(element) {
-                                var hiddenLetter = document.createElement("div");
-                                hiddenLetter.id = element
-                                hiddenLetter.setAttribute("class", "hiddenLetters")
-                                hiddenLetter.innerHTML = " _" + "   ";
-                                hiddenWord.appendChild(hiddenLetter);
+                        //creates an array with each letter of the hero name as an index
+                        var heroLetters = hero.split("");
+                        
+                        //test
+                        //console.log(heroLetters);
+                        
+                        var hiddenWord = document.getElementById("hiddenWord");
+                        // creates a new div for each of the letters in the heroes
+                        heroLetters.forEach(function(element) {
+                            //Adds each letter of hero name to an array named current word
+                            currentWord.push(element);
+                            //creates a div for the current letter
+                            var hiddenLetter = document.createElement("div");
+                            //makes the id of the new div the letter of the hero name
+                            hiddenLetter.id = element
+                            //adds the hiddenLetters class to the new div
+                            hiddenLetter.setAttribute("class", element);
+                            //inserts an underscore in the div for the letter
+                            hiddenLetter.innerHTML = " _" + "   ";
+                            //appends the div to the DOM
+                            hiddenWord.appendChild(hiddenLetter);
+                        })
+                    }
+                    else {
+                    //Tests 
+                    //console.log(hiddenWord);
+                    //console.log(currentWord);
+                    
+                    currentWord.forEach(function(element) {
+                        var letter = element;
+                        var guess = event.key;
+
+                        var letterUpper = letter.toUpperCase();
+                        var guessUpper = guess.toUpperCase();
+                        
+                        //test
+                        //console.log(letterUpper);
+                        //console.log(guessUpper);
+                        
+                        if (guessUpper == letterUpper){
+                            //grabs all divs that equal to the guessed letter
+                            var divs = document.getElementsByClassName(letterUpper);
+                            //transforms the NodeList into a regular array and iterates over them
+                            [].slice.call(divs).forEach(function (div){
+                                // for every item in the NodeList array that has a name of the guessed letter
+                                // we repalce the underscore with the letter
+                                div.innerHTML = guessUpper
                             })
+
                         }
-                              
-                    };
+                        else{
+                            //Test
+                            //console.log(event.key)
+                            //console.log(element);
+                        }
+                        });
+                    }    
+                };
+
+
+                  
 
                     
                     
