@@ -33,6 +33,9 @@
         <div id="hiddenWord">
             
         </div>
+        <div>
+            <h3>Incorrect Letters</h3><span id="wrongLetters"></span>
+        </div>
         <h3>Guesses Remaining:</h3><span id="guessesRemaining"></span>
         <h3>Wins:</h3><span id="numberOfWins">0</span>
     </div>
@@ -41,6 +44,7 @@
                 var wins = 0;
                 var guesses = 0;
                 var hiddenWord = " ";
+                var allGuesses = [];
                 var currentWord = [];
 
                 function getHero() {
@@ -60,6 +64,7 @@
 
                         //creates an array with each letter of the hero name as an index
                         var heroLetters = hero.split("");
+                        console.log(heroLetters);
                         
                         //test
                         //console.log(heroLetters);
@@ -69,12 +74,13 @@
                         heroLetters.forEach(function(element) {
                             //Adds each letter of hero name to an array named current word
                             currentWord.push(element);
+                            
                             //creates a div for the current letter
                             var hiddenLetter = document.createElement("div");
                             //makes the id of the new div the letter of the hero name
-                            hiddenLetter.id = element
+                            hiddenLetter.id = element ; 
                             //adds the hiddenLetters class to the new div
-                            hiddenLetter.setAttribute("class", element);
+                            hiddenLetter.setAttribute("class", element); // this styling is for display inline of the newly created divs "hiddenLetters"
                             //inserts an underscore in the div for the letter
                             hiddenLetter.innerHTML = " _" + "   ";
                             //appends the div to the DOM
@@ -85,19 +91,18 @@
                     //Tests 
                     //console.log(hiddenWord);
                     //console.log(currentWord);
-                    
                     currentWord.forEach(function(element) {
                         var letter = element;
                         var guess = event.key;
 
                         var letterUpper = letter.toUpperCase();
                         var guessUpper = guess.toUpperCase();
-                        
                         //test
                         //console.log(letterUpper);
-                        //console.log(guessUpper);
-                        
-                        if (guessUpper == letterUpper){
+                        //console.log(guessUpper); 
+                        if (guessUpper === letterUpper){
+
+                            allGuesses.push(guessUpper)
                             //grabs all divs that equal to the guessed letter
                             var divs = document.getElementsByClassName(letterUpper);
                             //transforms the NodeList into a regular array and iterates over them
@@ -106,9 +111,23 @@
                                 // we repalce the underscore with the letter
                                 div.innerHTML = guessUpper
                             })
-
                         }
-                        else{
+                        else if (guessUpper != letterUpper){
+
+                            if (allGuesses.indexOf(guessUpper) >= 0) {
+                                console.log("try again")
+                            }
+                            else {    
+                                allGuesses.push(guessUpper)
+                                var showWrongs = document.getElementById("wrongLetters")
+
+                                var wrongGuess = document.createElement("div");
+                                wrongGuess.id = guessUpper;
+                                wrongGuess.setAttribute("class", "wrongGuesses");
+
+                                wrongGuess.innerHTML = guessUpper ;
+                                showWrongs.appendChild(wrongGuess) ;
+                            }        
                             //Test
                             //console.log(event.key)
                             //console.log(element);
