@@ -34,7 +34,7 @@
             
         </div>
         <div>
-            <h3>Incorrect Letters</h3><span id="wrongLetters"></span>
+            <h3>Incorrect Guesses</h3><span id="wrongLetters"></span>
         </div>
         <h3>Guesses Remaining:</h3><span id="guessesRemaining"></span>
         <h3>Wins:</h3><span id="numberOfWins">0</span>
@@ -54,11 +54,15 @@
                     return heroes[index]
                 };
 
+                function updateGuesses(guesses) {
+                    document.getElementById("guessesRemaining").innerHTML = guesses;
+                }
+
                 document.onkeyup = function (event) {
 
                     if (guesses == 0){
                         guesses = 7;
-                        document.getElementById("guessesRemaining").innerHTML = guesses; 
+                        updateGuesses(guesses); 
                         //gets a random hero name
                         var hero = getHero();
 
@@ -128,6 +132,9 @@
 
                                 wrongGuess.innerHTML = guessUpper ;
                                 showWrongs.appendChild(wrongGuess) ;
+                                guesses--;
+                                updateGuesses(guesses);
+                                console.log(guesses)
                             }        
                             //Test
                             //console.log(event.key)
