@@ -117,7 +117,8 @@
                             if (allGuesses.indexOf(guessUpper) >= 0) {
                                 console.log("try again")
                             }
-                            else {    
+                            else if (currentWord.indexOf(guessUpper) == -1) {
+                                    
                                 allGuesses.push(guessUpper)
                                 var showWrongs = document.getElementById("wrongLetters")
 
