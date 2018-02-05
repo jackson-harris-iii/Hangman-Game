@@ -1,19 +1,15 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
+<!-- saved from url=(0057)file:///Users/Home/Bootcamp_Stuff/Hangman-Game/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">        
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./Page Title_files/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="./Page Title_files/style.css">        
+    <script src="./Page Title_files/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="./Page Title_files/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="./Page Title_files/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <!-- <script src="assets/javascript/game.js"></script> -->
 </head>
 <body>
@@ -30,13 +26,11 @@
                 <h2 class="text-center">Press Any Key to Get Started</h2>
             </div>
         </div>
-        <div id="hiddenWord">
-            
-        </div>
+        <div id="hiddenWord"><div id="J" class="J hiddenLetters"> _   </div><div id="A" class="A hiddenLetters"> _   </div><div id="I" class="I hiddenLetters"> _   </div><div id="N" class="N hiddenLetters"> _   </div><div id="A" class="A hiddenLetters"> _   </div></div>
         <div>
             <h3>Incorrect Guesses</h3><span id="wrongLetters"></span>
         </div>
-        <h3>Guesses Remaining:</h3><span id="guessesRemaining"></span>
+        <h3>Guesses Remaining:</h3><span id="guessesRemaining">7</span>
         <h3>Wins:</h3><span id="numberOfWins">0</span>
     </div>
 <script>
@@ -58,13 +52,6 @@
                 function setBoard() {
                     //gets a random hero name
                     var hero = getHero();
-
-                    //resets allGuesses array
-                    allGuesses = [];
-
-                    //clears incorrect guesses field
-                    var wrongLetters = document.getElementById("wrongLetters");
-                    wrongLetters.innerHTML = "";
 
                     //clears guesses remaining field
                     var guessesRemaining = document.getElementById("guessesRemaining");
@@ -110,7 +97,7 @@
 
                 document.onkeyup = function (event) {
 
-                    if (currentWord.length < 1 || guesses == 0 ){
+                    if (guesses == 0){
                         setBoard()
                     }
                     else {
@@ -126,7 +113,7 @@
                         //test
                         //console.log(letterUpper);
                         //console.log(guessUpper); 
-                        if (guessUpper === letterUpper && guesses > 0){
+                        if (guessUpper === letterUpper && guesses > 1){
 
                             allGuesses.push(guessUpper)
                             //grabs all divs that equal to the guessed letter
@@ -138,47 +125,33 @@
                                 div.innerHTML = guessUpper
                             })
                         }
+                        else if (guessUpper != letterUpper){
 
-                        
-                        //test to see if the guessed letter is not a correct letter
-                        else if (guessUpper != letterUpper && guesses > 0){
-                        //if the guessed letter is not correct log try again    
                             if (allGuesses.indexOf(guessUpper) >= 0) {
                                 console.log("try again")
                             }
-                        //if the guessed letter is not in the current word add is to the incorrect guesses 
-                        
-                            else if (currentWord.indexOf(guessUpper) == -1 && guesses >= 1 ) {
+                            else if (currentWord.indexOf(guessUpper) == -1) {
                                     
-                                allGuesses.push(guessUpper);
-                                var showWrongs = document.getElementById("wrongLetters");
-                                var endGame = document.getElementById("guessesRemaining");
-                        //adds incorrect guess to the incorrect guesses field        
+                                allGuesses.push(guessUpper)
+                                var showWrongs = document.getElementById("wrongLetters")
+
                                 var wrongGuess = document.createElement("div");
                                 wrongGuess.id = guessUpper;
                                 wrongGuess.className = "wrongGuesses";
 
                                 wrongGuess.innerHTML = guessUpper ;
                                 showWrongs.appendChild(wrongGuess) ;
-                        //lowers the count of the guesses remaining       
                                 guesses--;
                                 updateGuesses(guesses);
                                 console.log(guesses)
-
-                                if ( guesses == 0) {
-                                    endGame.innerHTML = "Play Again";
-                                    showWrongs.innerHTML = "Press Any Key To";
-                                }
-                                else {
-                                console.log(guesses)
-                                }
-                            
-                            }      
+                            }        
                             //Test
                             //console.log(event.key)
                             //console.log(element);
                         }
-                      
+                        else {
+                            setBoard()
+                        }
                         });
                     }    
                 };
@@ -192,5 +165,5 @@
                 
 </script>
 
-</body>
-</html>
+
+</body></html>
