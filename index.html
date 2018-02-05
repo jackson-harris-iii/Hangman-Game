@@ -47,6 +47,7 @@
                 var allGuesses = [];
                 var currentWord = [];
                 var guessesRemaining = " ";
+                var correctGuesses = [];
 
                 function getHero() {
                     min = Math.ceil(0);
@@ -61,6 +62,11 @@
 
                     //resets allGuesses array
                     allGuesses = [];
+                    //resets correctGuesses array
+                    correctGuesses = [];
+
+                    //resets currentWord
+                    currentWord = [];
 
                     //clears incorrect guesses field
                     var wrongLetters = document.getElementById("wrongLetters");
@@ -126,17 +132,37 @@
                         //test
                         //console.log(letterUpper);
                         //console.log(guessUpper); 
-                        if (guessUpper === letterUpper && guesses > 0){
-
+                        if (guessUpper === letterUpper && guesses > 0 && correctGuesses.indexOf(guessUpper) == -1 ){
+                            
                             allGuesses.push(guessUpper)
+                            
                             //grabs all divs that equal to the guessed letter
                             var divs = document.getElementsByClassName(letterUpper);
+                            
                             //transforms the NodeList into a regular array and iterates over them
                             [].slice.call(divs).forEach(function (div){
                                 // for every item in the NodeList array that has a name of the guessed letter
                                 // we repalce the underscore with the letter
-                                div.innerHTML = guessUpper
+                                div.innerHTML = guessUpper;
+                                correctGuesses.push(guessUpper)
+                                console.log(correctGuesses)
+                                //wins counter if statement 
+                                // correctGuesses++;
+                                // console.log(correctGuesses);
                             })
+                             if (correctGuesses.length == currentWord.length) {
+                                var guessesReamainingField = document.getElementById("guessesRemaining");
+                                var incorrectGuessesField = document.getElementById("wrongLetters");
+                                var numberOfWinsField = document.getElementById("numberOfWins");
+                                guessesReamainingField.innerHTML = "Play Again";
+                                incorrectGuessesField.innerHTML = "Press Any Key To";
+                                wins++;
+                                numberOfWinsField.innerHTML = wins;
+                                guesses = 0;
+                            }
+                            else {
+                                console.log("keep playing")
+                            }
                         }
 
                         
@@ -166,7 +192,7 @@
                                 console.log(guesses)
 
                                 if ( guesses == 0) {
-                                    endGame.innerHTML = "Play Again";
+                                    endGame.innerHTML = "You Lose, Play Again";
                                     showWrongs.innerHTML = "Press Any Key To";
                                 }
                                 else {
