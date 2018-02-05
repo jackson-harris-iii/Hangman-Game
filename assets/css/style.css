@@ -1,7 +1,22 @@
+body, html {
+    height: 100%;
+}
 .hiddenLetters {
     display: inline;
 }
 
 .wrongGuesses {
     display: inline;
+}
+
+.banner {
+    background: url("assets/images/Hearthstone_Logo.png")
+}
+
+.bg {
+    background: url("assets/images/background.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
