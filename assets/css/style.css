@@ -35,9 +35,24 @@ body, html {
     background: rgba(0, 0, 0, 0.8);
 }
 
-.bg {
+.bigbg {
     background: url("../images/background2.jpg");
     background-repeat:no-repeat;
     background-size:cover;
-    background-repeat:no-repeat;
+}
+
+/* .smbg {
+    background: url("../images/smallbg.jpg");
+    display: none;
+}
+
+@media and (max-width: 768px;{
+    .smbg{
+        display: block;
+    }
+
+    .bigbg {
+        display: none;
+    } */
+
 }
