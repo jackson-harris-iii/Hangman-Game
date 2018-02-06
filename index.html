@@ -14,32 +14,50 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
         crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
     <!-- <script src="assets/javascript/game.js"></script> -->
 </head>
-<body>
+<body class="bg">
     <div class="container">       
         <div class="row">
-            <div class="col-md-12 bg">
-                <div class="jumbotron jumbotron-fluid"> 
-                    <!-- <img src="assets/images/Hearthstone_Logo.png" class="img-fluid" alt="Responsive image">     -->
-                    <h1 class="display-3">HearthStone Heroes Hangman</h1>
-                </div>
+            <div class="col-md-6">
+                <img src="assets/images/Hearthstone_Logo.png" alt="hearthstone logo">
+            </div>    
+            <div class="col-md-6">
+                 <h1 class="display-1 hangmanWords mt-5">Hangman</h1>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">  
-                <h2 class="text-center">Press Any Key to Get Started</h2>
+                <h2 class="text-center subHeading display-5">Press Any Key to Get Started</h2>
             </div>
         </div>
-        <div id="hiddenWord">
-            
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card p-5 text-center leftPanel h-100">
+                    <div class="display-3" id="hiddenWord"></div>
+                    <h3>Incorrect Guesses</h3><span id="wrongLetters"></span>
+                    <h3 class="beInline">Guesses Remaining:</h3><span class="beInline" id="guessesRemaining"></span>
+                    <h3>Wins:</h3><span id="numberOfWins">0</span>
+                </div>
+            </div> 
+            <div class="col-md-6">
+                <div class="card p-3 ml-2 mr-2 text-center leftPanel">
+                    <div id="heroPic">
+                        <img src="assets/images/hidden-hero.png" alt="hidden-hero image">
+                    </div>                
+                </div>
+            </div>
         </div>
-        <div>
-            <h3>Incorrect Guesses</h3><span id="wrongLetters"></span>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-flex justify-content-center p-2">
+                    <audio controls loop autoplay>
+                        <source src="assets/audio/tavernmusic.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
         </div>
-        <h3>Guesses Remaining:</h3><span id="guessesRemaining"></span>
-        <h3>Wins:</h3><span id="numberOfWins">0</span>
-    </div>
 <script>
                 var heroes = ["JAINA", "REXXAR", "THRALL", "MALFURION", "UTHER", "ANDUIN", "VALEERA", "GULDAN", "GARROSH"];
                 var wins = 0;
@@ -208,15 +226,7 @@
                       
                         });
                     }    
-                };
-
-
-                  
-
-                    
-                    
-
-                
+                };               
 </script>
 
 </body>
