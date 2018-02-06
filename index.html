@@ -43,8 +43,8 @@
             </div> 
             <div class="col-md-6">
                 <div class="card p-3 ml-2 mr-2 text-center leftPanel">
-                    <div id="heroPic">
-                        <img src="assets/images/hidden-hero.png" alt="hidden-hero image">
+                    <div>
+                        <img id="heroPic" src="assets/images/hidden-hero.png" alt="hidden-hero image">
                     </div>                
                 </div>
             </div>
@@ -76,6 +76,9 @@
                 };
 
                 function setBoard() {
+                    //resets hero image
+                    document.getElementById("heroPic").src = "assets/images/hidden-hero.png"
+
                     //gets a random hero name
                     var hero = getHero();
 
@@ -173,6 +176,8 @@
                                 var guessesReamainingField = document.getElementById("guessesRemaining");
                                 var incorrectGuessesField = document.getElementById("wrongLetters");
                                 var numberOfWinsField = document.getElementById("numberOfWins");
+                                var heroSource = "assets/images/" + currentWord.join('') + ".png"
+                                document.getElementById("heroPic").src = heroSource;
                                 guessesReamainingField.innerHTML = "Play Again";
                                 incorrectGuessesField.innerHTML = "Press Any Key To";
                                 wins++;
