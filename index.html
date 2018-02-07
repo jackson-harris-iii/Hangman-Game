@@ -105,7 +105,9 @@
                     
                     //creates an array with each letter of the hero name as an index
                     var heroLetters = hero.split("");
-                    console.log(heroLetters);
+                    
+                    //Test
+                    //console.log(heroLetters);
 
                     //test
                     //console.log(heroLetters);
@@ -167,7 +169,9 @@
                                 // we repalce the underscore with the letter
                                 div.innerHTML = guessUpper;
                                 correctGuesses.push(guessUpper)
-                                console.log(correctGuesses)
+                                
+                                //TESTS
+                                //console.log(correctGuesses)
                                 //wins counter if statement 
                                 // correctGuesses++;
                                 // console.log(correctGuesses);
@@ -178,7 +182,10 @@
                                 var numberOfWinsField = document.getElementById("numberOfWins");
                                 var heroSource = "assets/images/" + currentWord.join('') + ".png"
                                 var heroSound = "assets/audio/" + currentWord.join('') +".ogg"
-                                console.log(heroSound);
+                                
+                                //Test
+                                //console.log(heroSound);
+                                
                                 var makeSound = new Audio(heroSound);
                                 makeSound.play();
                                 document.getElementById("heroPic").src = heroSource;
