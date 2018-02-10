@@ -77,7 +77,7 @@
 
                 function setBoard() {
                     //resets hero image
-                    document.getElementById("heroPic").src = "assets/images/hidden-hero.png"
+                    $("#heroPic").attr("src", "assets/images/hidden-hero.png")
 
                     //gets a random hero name
                     var hero = getHero();
@@ -91,12 +91,11 @@
                     currentWord = [];
 
                     //clears incorrect guesses field
-                    var wrongLetters = document.getElementById("wrongLetters");
-                    wrongLetters.innerHTML = "";
+                    $("#wrongLetters").empty();
+                    
 
                     //clears guesses remaining field
-                    var guessesRemaining = document.getElementById("guessesRemaining");
-                    guessesRemaining.innerHTML = "";
+                    $("#guessesRemaining").empty();
 
                     //sets the guesses to the length of the hero name + 3
                     guesses = hero.length + 2;
@@ -112,25 +111,25 @@
                     //test
                     //console.log(heroLetters);
 
-                    var hiddenWord = document.getElementById("hiddenWord");
-                    hiddenWord.innerHTML = "";
+                    $("#hiddenWord").empty();
                     // creates a new div for each of the letters in the heroes
                     heroLetters.forEach(function (element) {
                         //Adds each letter of hero name to an array named current word
-                        
+                        console.log(element)
                         currentWord.push(element);
 
                         //creates a div for the current letter
-                        var hiddenLetter = document.createElement("div");
+                        // $().add("div").html(" _ ");
+                        // hiddenLetter.attr("id", )
                         //makes the id of the new div the letter of the hero name
-                        hiddenLetter.id = element;
+                        // hiddenLetter.id = element;
                         //adds the hiddenLetters class to the new div
-                        hiddenLetter.className = element;  // this styling is for display inline of the newly created divs "hiddenLetters"
-                        hiddenLetter.className += " hiddenLetters";  // this styling is for display inline of the newly created divs "hiddenLetters"
+                        // hiddenLetter.className = element;  // this styling is for display inline of the newly created divs "hiddenLetters"
+                        // hiddenLetter.className += " hiddenLetters";  // this styling is for display inline of the newly created divs "hiddenLetters"
                         //inserts an underscore in the div for the letter
-                        hiddenLetter.innerHTML = " _" + "   ";
+                        // hiddenLetter.innerHTML = " _" + "   ";
                         //appends the div to the DOM
-                        hiddenWord.appendChild(hiddenLetter);
+                        $("#hiddenWord").append("div").attr("id" , element).addClass(" hiddenLetters").addClass(element).html("_ ")
                     })
                 }
 

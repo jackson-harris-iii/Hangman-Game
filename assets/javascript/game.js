@@ -24,6 +24,4 @@
     document.onkeyup = function (event) { 
         var hero = Hangman.getHero()
         console.log(hero)       
-
-     
-}
+    }
